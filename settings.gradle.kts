@@ -16,9 +16,6 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        flatDir {
-            dirs("/Users/shivankursingh/StudioProjects/appSdkManager/sdk/build/outputs/aar")
-        }
         maven { url = uri("https://justbaat-apps-b325d.web.app")}
     }
 }
