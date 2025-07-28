@@ -47,7 +47,7 @@ dependencies {
     implementation("com.google.android.gms:play-services-ads:23.0.0")
     implementation("com.google.android.material:material:1.12.0")
     implementation("com.google.code.gson:gson:2.10.1")
-    implementation("com.justbaatAds:adsSdk:1.0.4")
+    implementation("com.justbaatAds:adsSdk:1.0.5")
     implementation("com.unity3d.ads-mediation:mediation-sdk:8.9.1")
     implementation("com.google.android.gms:play-services-appset:16.0.0")
     implementation ("com.google.android.gms:play-services-ads-identifier:18.1.0")

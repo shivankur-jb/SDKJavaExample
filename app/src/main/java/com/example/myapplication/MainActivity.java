@@ -29,10 +29,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         AdSdkManager.INSTANCE.initialize(
                 this,
-                "sample-test",
-                true,
+                "sample-test-new",
                 status -> {
                     Log.d("MainActivity", "SDK Initialized with: " + status.toString());
                     return null;

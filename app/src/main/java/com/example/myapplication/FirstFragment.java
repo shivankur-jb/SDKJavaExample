@@ -16,6 +16,8 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.myapplication.databinding.FragmentFirstBinding;
 import com.justbaat.ads.sdk.AdSdkManager;
 
+import java.util.Objects;
+
 
 public class FirstFragment extends Fragment {
 
@@ -34,9 +36,8 @@ public class FirstFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
         Activity activity = getActivity();
+        AdSdkManager.INSTANCE.loadRewarded(requireActivity(), "rewarded_placement");
         AdSdkManager.INSTANCE.registerSdkReadyCallback(() -> {
             if (activity != null) {
 
@@ -57,9 +58,10 @@ public class FirstFragment extends Fragment {
 
                 ViewGroup nativeAdContainer = requireView().findViewById(R.id.native_ad_container);
 
-                AdSdkManager.INSTANCE.loadNativeAd(
+                AdSdkManager.INSTANCE.showNativeAd(
                         activity,
                         nativeAdContainer,
+                        null,
                         () -> {
                             Log.d("FirstFragment", "Native ad loaded");
                             return null;

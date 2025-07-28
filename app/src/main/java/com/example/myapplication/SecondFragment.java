@@ -31,8 +31,10 @@ public class SecondFragment extends Fragment {
 
     }
 
+    @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        AdSdkManager.INSTANCE.loadInterstitialAd(requireActivity(), "interstitial_placement");
         Activity activity = getActivity();
         if (activity != null) {
             ViewGroup bannerContainer = requireView().findViewById(R.id.banner_container_second);
@@ -49,8 +51,11 @@ public class SecondFragment extends Fragment {
         binding.buttonSecond.setOnClickListener(v -> {
             if (activity != null) {
                 binding.buttonSecond.setEnabled(false);
+
                 new Handler(Looper.getMainLooper()).postDelayed(() -> {
-                    binding.buttonSecond.setEnabled(true);
+                    if (binding != null) {
+                        binding.buttonSecond.setEnabled(true);
+                    }
                 }, 5000);
                 AdSdkManager.INSTANCE.showInterstitialAd(
                         activity,
@@ -58,23 +63,24 @@ public class SecondFragment extends Fragment {
                         false,
                         0,
                         () -> {
-                            NavHostFragment.findNavController(SecondFragment.this)
-                                    .navigate(R.id.action_SecondFragment_to_FirstFragment);
+                            if (isAdded()) {
+                                NavHostFragment.findNavController(SecondFragment.this)
+                                        .navigate(R.id.action_SecondFragment_to_FirstFragment);
+                            }
                             return null;
                         },
                         (error) -> {
                             Log.e("SecondFragment", "Interstitial ad failed: " + error);
-
-                            NavHostFragment.findNavController(SecondFragment.this)
-                                    .navigate(R.id.action_SecondFragment_to_FirstFragment);;
+                            if (isAdded()) {
+                                NavHostFragment.findNavController(SecondFragment.this)
+                                        .navigate(R.id.action_SecondFragment_to_FirstFragment);
+                            }
                             return null;
                         }
                 );
-
-
             }
-
         });
+
     }
 
     @Override
